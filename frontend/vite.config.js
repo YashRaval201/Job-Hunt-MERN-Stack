@@ -10,6 +10,17 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
-  }
+    rollupOptions: {
+      output: {
+        entryFileNames: 'main.jsx',
+        chunkFileNames: '[name].js',
+        assetFileNames: '[name].[ext]',
+      },
+    },
+  },
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
 })
