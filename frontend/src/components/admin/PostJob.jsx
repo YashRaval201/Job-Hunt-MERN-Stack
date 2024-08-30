@@ -23,7 +23,8 @@ const PostJob = () => {
         jobType: "",
         experience: "",
         position: 0,
-        companyId: ""
+        lastDateOfApplication: "",
+        companyId: "",
     });
     const [loading, setLoading]= useState(false);
     const navigate = useNavigate();
@@ -103,7 +104,7 @@ const PostJob = () => {
                                 value={input.salary}
                                 onChange={changeEventHandler}
                                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
-                            />
+                            /> 
                         </div>
                         <div>
                             <Label>Location</Label>
@@ -145,10 +146,23 @@ const PostJob = () => {
                                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
+                        <div>
+                            <Label>Last Date of Application</Label>
+                            <Input
+                                type="date"
+                                name="lastDateOfApplication"
+                                value={input.lastDateOfApplication}
+                                onChange={changeEventHandler}
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                placeholder="YYYY-MM-DD"
+                            />
+                        </div>
+                        <div>
+                        <Label>Company</Label>
                         {
                             companies.length > 0 && (
                                 <Select onValueChange={selectChangeHandler}>
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger>
                                         <SelectValue placeholder="Select a Company" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -166,6 +180,7 @@ const PostJob = () => {
                                 </Select>
                             )
                         }
+                        </div>
                     </div> 
                     {
                         loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Post New Job</Button>

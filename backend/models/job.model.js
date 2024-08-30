@@ -47,6 +47,10 @@ const jobSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Application',
         }
-    ]
+    ],
+    lastDateOfApplication: {
+        type: Date,
+        required: true
+    }
 },{timestamps:true});
 export const Job = mongoose.model("Job", jobSchema);

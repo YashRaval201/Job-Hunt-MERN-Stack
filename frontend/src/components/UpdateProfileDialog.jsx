@@ -20,7 +20,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         phoneNumber: user?.phoneNumber || "",
         bio: user?.profile?.bio || "",
         skills: user?.profile?.skills?.map(skill => skill) || "",
-        file: user?.profile?.resume || ""
+        file: user?.profile?.resume || "",
+        profilePhoto: user?.profile?.profilePhoto || ""
     });
     const dispatch = useDispatch();
 
@@ -44,6 +45,9 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         if (input.file) {
             formData.append("file", input.file);
         }
+        if (input.profilePhoto) {
+            formData.append("profilePhoto", input.profilePhoto); // Added profilePhoto to formData
+        }
         try {
             setLoading(true);
             const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
@@ -59,7 +63,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
-        } finally{
+        } finally {
             setLoading(false);
         }
         setOpen(false);
@@ -114,7 +118,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 <Input
                                     id="bio"
                                     name="bio"
-                                    value={input.bio}
+                                    value={input.bio}  
                                     onChange={changeEventHandler}
                                     className="col-span-3"
                                 />
@@ -140,6 +144,23 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     className="col-span-3"
                                 />
                             </div>
+                            <div className='grid grid-cols-4 items-center gap-4'>
+                                <Label htmlFor="profilePhoto" className="text-right">Profile Picture</Label>
+                                <Input
+                                    id="profilePhoto"
+                                    name="profilePhoto"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            setInput({ ...input, profilePhoto: file });
+                                        }
+                                    }}
+                                    className="col-span-3"
+                                />
+                            </div>
+
                         </div>
                         <DialogFooter>
                             {

@@ -32,6 +32,7 @@ const AdminJobsTable = () => {
                         <TableHead>Company Name</TableHead>
                         <TableHead>Role</TableHead>
                         <TableHead>Date</TableHead>
+                        <TableHead>Last Date</TableHead>
                         <TableHead className="text-right">Action</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -42,6 +43,7 @@ const AdminJobsTable = () => {
                                 <TableCell>{job?.company?.name}</TableCell>
                                 <TableCell>{job?.title}</TableCell>
                                 <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
+                                <TableCell>{job?.lastDateOfApplication.split("T")[0]}</TableCell>
                                 <TableCell className="text-right cursor-pointer">
                                     <Popover>
                                         <PopoverTrigger><MoreHorizontal /></PopoverTrigger>

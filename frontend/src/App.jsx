@@ -29,6 +29,7 @@ const appRouter = createBrowserRouter([
     path: '/signup',
     element: <Signup />
   },
+  // For Applicant
   {
     path: "/jobs",
     element: <Jobs />
@@ -45,7 +46,7 @@ const appRouter = createBrowserRouter([
     path: "/profile",
     element: <Profile />
   },
-  // admin ke liye yha se start hoga
+  // For Admin
   {
     path:"/admin/companies",
     element: <ProtectedRoute><Companies/></ProtectedRoute>

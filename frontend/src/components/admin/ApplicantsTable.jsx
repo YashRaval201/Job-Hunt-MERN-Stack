@@ -18,7 +18,7 @@ const ApplicantsTable = () => {
             axios.defaults.withCredentials = true;
             const res = await axios.post(`${APPLICATION_API_END_POINT}/status/${id}/update`, { status });
             console.log(res);
-            if (res.data.success) {
+            if (res?.data?.success) {
                 toast.success(res.data.message);
             }
         } catch (error) {
@@ -52,7 +52,7 @@ const ApplicantsTable = () => {
                                         item.applicant?.profile?.resume ? <a className="text-blue-600 cursor-pointer" href={item?.applicant?.profile?.resume} target="_blank" rel="noopener noreferrer">{item?.applicant?.profile?.resumeOriginalName}</a> : <span>NA</span>
                                     }
                                 </TableCell>
-                                <TableCell>{item?.applicant.createdAt.split("T")[0]}</TableCell>
+                                <TableCell>{item?.applicant?.createdAt.split("T")[0]}</TableCell>
                                 <TableCell className="float-right cursor-pointer">
                                     <Popover>
                                         <PopoverTrigger>

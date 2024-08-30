@@ -31,13 +31,14 @@ const Job = ({job}) => {
                 </Button>
                 <div>
                     <h1 className='font-medium text-lg'>{job?.company?.name}</h1>
-                    <p className='text-sm text-gray-500'>India</p>
+                    <p className='text-sm text-gray-500'>{job?.location}</p>
                 </div>
             </div>
 
             <div>
                 <h1 className='font-bold text-lg my-2'>{job?.title}</h1>
                 <p className='text-sm text-gray-600'>{job?.description}</p>
+                <h1 className='font-bold my-2'>Last Date: <span className='font-normal text-gray-800'>{job?.lastDateOfApplication.split("T")[0]}</span></h1>
             </div>
             <div className='flex items-center gap-2 mt-4'>
                 <Badge className={'text-blue-700 font-bold'} variant="ghost">{job?.position} Positions</Badge>

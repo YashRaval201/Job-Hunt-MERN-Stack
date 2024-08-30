@@ -59,14 +59,14 @@ export const login = async (req, res) => {
         let user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({
-                message: "Incorrect email or password.",
+                message: "Incorrect Email.",
                 success: false,
             })
         }
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) {
             return res.status(400).json({
-                message: "Incorrect email or password.",
+                message: "Incorrect Password.",
                 success: false,
             })
         };
@@ -116,7 +116,6 @@ export const updateProfile = async (req, res) => {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
         
         const file = req.file;
-        // cloudinary ayega idhar
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
@@ -142,7 +141,7 @@ export const updateProfile = async (req, res) => {
         if(bio) user.profile.bio = bio
         if(skills) user.profile.skills = skillsArray
       
-        // resume comes later here...
+        // resume will come here...
         if(cloudResponse){
             user.profile.resume = cloudResponse.secure_url // save the cloudinary url
             user.profile.resumeOriginalName = file.originalname // Save the original file name

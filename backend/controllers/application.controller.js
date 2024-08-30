@@ -70,7 +70,7 @@ export const getAppliedJobs = async (req,res) => {
         console.log(error);
     }
 }
-// admin dekhega kitna user ne apply kiya hai
+// Applicants applied per Job
 export const getApplicants = async (req,res) => {
     try {
         const jobId = req.params.id;
@@ -95,13 +95,14 @@ export const getApplicants = async (req,res) => {
         console.log(error);
     }
 }
+// Status: Accepted, Pending, Rejected
 export const updateStatus = async (req,res) => {
     try {
         const {status} = req.body;
         const applicationId = req.params.id;
         if(!status){
             return res.status(400).json({
-                message:'status is required',
+                message:'Status is required',
                 success:false
             })
         };
@@ -119,7 +120,7 @@ export const updateStatus = async (req,res) => {
         application.status = status.toLowerCase();
         await application.save();
 
-        return res.status(200).json({
+        return res.status(200).json({ 
             message:"Status updated successfully.",
             success:true
         });
